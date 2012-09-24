@@ -31,22 +31,27 @@ namespace notepad
 
             register = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\NotepadUygulama\Kullanim");
 
-            foreach (var v in register.GetValueNames())
-            {
-                recentFileToolStripMenuItem.DropDownItems.Add(v);
-            }
+            sort();
 
             foreach (FontFamily font in System.Drawing.FontFamily.Families)
             {
                 toolStripComboBox1.Items.Add(font.Name);
             }
-            //for (int i = 8; i < 55; i++)
-            //    toolStripComboBox2.Items.Add(i);
+        }
+
+        private void sort()
+        {
+            recentFileToolStripMenuItem.DropDownItems.Clear();
+            for (int i = register.ValueCount - 1; 0 <= i; i--)
+            {
+                recentFileToolStripMenuItem.DropDownItems.Add(register.GetValueNames()[i]);
+            }
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFile();
+            sort();
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -64,12 +69,32 @@ namespace notepad
             closeClicked();
         }
 
+        private void registerDel()
+        {
+            foreach (var v in register.GetValueNames())
+            {
+                register.DeleteValue(v);
+                break;
+            }
+        }
         private void registerAdd(string path)
         {
-            if ((fileCount != 9) && (register.GetValue(path) == null))
+            if (register.ValueCount.ToString() == "9")
+            {
+                if (register.GetValue(path) == null)
+                {
+                    registerDel();
+                    register.SetValue(path, fileCount.ToString());
+                }
+                else
+                {
+                    register.SetValue(path, fileCount.ToString());
+                    fileCount += 1;
+                }
+            }
+            else
             {
                 register.SetValue(path, fileCount.ToString());
-                fileCount += 1;
             }
         }
 
@@ -96,6 +121,7 @@ namespace notepad
                 Application.Exit();
             }
         }
+
 
         private void save()
         {
@@ -133,6 +159,7 @@ namespace notepad
                     registerAdd(file.FileName);
                 }
             }
+            sort();
         }
         private void openFile(string path = null)
         {
@@ -158,11 +185,7 @@ namespace notepad
 
                             richTextBox1.LoadFile(@path, RichTextBoxStreamType.RichText);
 
-                            if (fileCount != 9)
-                            {
-                                register.SetValue(path, fileCount.ToString());
-                                fileCount += 1;
-                            }
+                            registerAdd(path);
                         }
                     }
                     else

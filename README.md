@@ -1,0 +1,1 @@
+Geliþtirimiþ notepad uygulamasý

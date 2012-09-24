@@ -1,0 +1,9 @@
+c:\users\sem\documents\visual studio 2010\Projects\notepad\notepad\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\sem\documents\visual studio 2010\Projects\notepad\notepad\obj\x86\Debug\notepad.Form1.resources
+c:\users\sem\documents\visual studio 2010\Projects\notepad\notepad\obj\x86\Debug\notepad.Properties.Resources.resources
+c:\users\sem\documents\visual studio 2010\Projects\notepad\notepad\obj\x86\Debug\GenerateResource.read.1.tlog
+c:\users\sem\documents\visual studio 2010\Projects\notepad\notepad\obj\x86\Debug\GenerateResource.write.1.tlog
+c:\users\sem\documents\visual studio 2010\Projects\notepad\notepad\bin\Debug\notepad.exe
+c:\users\sem\documents\visual studio 2010\Projects\notepad\notepad\bin\Debug\notepad.pdb
+c:\users\sem\documents\visual studio 2010\Projects\notepad\notepad\obj\x86\Debug\notepad.exe
+c:\users\sem\documents\visual studio 2010\Projects\notepad\notepad\obj\x86\Debug\notepad.pdb

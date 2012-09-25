@@ -37,6 +37,7 @@ namespace notepad
             {
                 toolStripComboBox1.Items.Add(font.Name);
             }
+            toolStripStatusLabel1.Text = "Yeni dosya";
         }
 
         private void sort()
@@ -248,14 +249,36 @@ namespace notepad
 
         private void toolStripComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string[] fi = { richTextBox1.Font.Name.ToString(), (string)toolStripComboBox2.SelectedItem };
+            string[] fi = new string[2];
+
+            if (toolStripComboBox1.SelectedItem == null)
+            {
+                fi[0] = (string)richTextBox1.Font.Name.ToString();
+                fi[1] = (string)toolStripComboBox2.SelectedItem;
+            }
+            else
+            {
+                fi[0] = (string)toolStripComboBox1.SelectedItem;
+                fi[1] = (string)toolStripComboBox2.SelectedItem;
+            }
 
             richTextBox1.SelectionFont = font(fi[0],fi[1]);
         }
 
         private void toolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string[] fi = { (string)toolStripComboBox1.SelectedItem, richTextBox1.Font.Size.ToString() };
+            string[] fi = new string[2];
+
+            if (toolStripComboBox2.SelectedItem == null)
+            {
+                fi[0] = (string)toolStripComboBox1.SelectedItem;
+                fi[1] = richTextBox1.Font.Size.ToString();
+            }
+            else
+            {
+                fi[0] = (string)toolStripComboBox1.SelectedItem;
+                fi[1] = (string)toolStripComboBox2.SelectedItem;
+            }
 
             richTextBox1.SelectionFont = font(fi[0],fi[1]);
         }
